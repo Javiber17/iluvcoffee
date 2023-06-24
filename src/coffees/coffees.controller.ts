@@ -1,5 +1,8 @@
 import {Controller, Get, Param, Post, Body, Patch, Query, HttpCode, HttpStatus, Delete } from '@nestjs/common';
 import { CoffeesService } from './coffees.service';
+import { CreateCoffeeDto } from './dto/create-coffee.dto';
+import { UpdateCoffeeDto } from './dto/update-coffee.dto';
+//import { UpdateCoffeeDto } from './dto/update-coffee.dto'; 
 //import path from 'path';
 
 @Controller('coffees')
@@ -19,15 +22,13 @@ export class CoffeesController {
     }
 
     @Post()
-//Parece que borra en el video 13, min 6:43    @HttpCode(HttpStatus.GONE)
-    create(@Body() Body) {
-//Elimina en el video      return body;
-      return this.coffeesService.Create(Body); //---------------------------------- video 13, min 6:48 continuar viendo
-  }
+    create(@Body() createCoffeeDto: CreateCoffeeDto) {
+      return this.coffeesService.Create(createCoffeeDto);
+    }
 
     @Patch(':id')
-    update(@Param('id') id: string, @Body() Body){
-      return this.coffeesService.update(id,Body)
+    update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto){
+      return this.coffeesService.update(id,updateCoffeeDto)
     }
 
     @Delete(':id')
