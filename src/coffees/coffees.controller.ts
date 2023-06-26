@@ -17,14 +17,14 @@ export class CoffeesController {
 
     @Get(':id')
      findOne(@Param('id') id: number) {
-//Eliminar enel vidio      return `this action returns #${id} Coffees`;
+      console.log(typeof id);
       return this.coffeesService.findOne(''+id);
     }
 
      @Post()
     create(@Body() createCoffeeDto: CreateCoffeeDto) {
       console.log(createCoffeeDto instanceof CreateCoffeeDto);
-      return this.coffeesService.Create(createCoffeeDto);
+      return this.coffeesService.create(createCoffeeDto);
     }
 
     @Patch(':id')

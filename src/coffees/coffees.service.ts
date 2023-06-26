@@ -3,6 +3,7 @@ import { Coffee } from './entities/coffee.entity';
 
 @Injectable()
 export class CoffeesService {
+    [x: string]: any;
     private coffees: Coffee[] = [
         {
             id: 1,
