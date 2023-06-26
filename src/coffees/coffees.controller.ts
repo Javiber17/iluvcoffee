@@ -10,9 +10,7 @@ export class CoffeesController {
     constructor(private readonly coffeesService: CoffeesService){}
     @Get()
     findAll(@Query() paginationQuery) {
-//      const{ limit, offset } = paginationQuery;
-//ELIMINAR EN EL VIDEO      return `this action returns all Coffees. Limit: ${limit}, offset: ${offset}`;
-        return this.coffeesService.findAll();    
+      return this.coffeesService.findAll();    
   }
 
     @Get(':id')
