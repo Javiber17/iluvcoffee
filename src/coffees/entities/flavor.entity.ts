@@ -14,7 +14,6 @@ export class Flavor {
        coffee => coffee.flavors
     )
     
-    //@ManyToMany (type=>Flavor, flavors=>flavors.Coffee)
     coffee: Coffee[];
 
 }
