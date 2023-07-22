@@ -4,17 +4,15 @@ import { Coffee } from "./coffee.entity";
 @Entity()
 export class Flavor {
     @PrimaryGeneratedColumn()
-    id: number;
+    id: string;
 
     @Column()
     name: string;
 
     @ManyToMany (
         type => Coffee,
-       coffee => coffee.flavors
+        coffee => coffee.flavors,
     )
-    
-    coffee: Coffee[];
-
+    coffees: Coffee[];
 }
 

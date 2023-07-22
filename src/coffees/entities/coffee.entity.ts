@@ -1,5 +1,6 @@
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Flavor } from "./flavor.entity";
+import { Flavor } from "./flavor.entity"
+import { Type } from "class-transformer";
 
 @Entity()
 export class Coffee {
@@ -14,9 +15,8 @@ export class Coffee {
 
     @JoinTable()
     @ManyToMany(
-        type => Flavor,
-        flavor =>flavor.coffee
-        )
-
-    flavors: string[];
+        Type => Flavor,
+        flavor =>flavor.coffees,)
+        
+flavors: string[];
 }
