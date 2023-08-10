@@ -2,14 +2,17 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Coffee } from './entities/coffee.entity';
+import { Flavor } from './entities/flavor.entity';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
-
+import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
 @Injectable()
 export class CoffeesService {
    constructor(
         @InjectRepository(Coffee)
         private readonly coffeeRepository: Repository<Coffee>,
+        @InjectRepository(Flavor)
+        private readonly flavorRepository: Repository<Flavor>,
     ){}
 
     findAll(){
@@ -17,9 +20,10 @@ export class CoffeesService {
             relations: ['flavors'],
         });
     }
-    async findOne(id: String){
-        //const coffee = await this.coffeeRepository.findOne(id, {relations: ['flavors'],});
-        const coffee = await this.coffeeRepository.findOne(id, {relations: ['flavors'],});
+    async findOne(id: String){         
+        const coffee = await this.coffeeRepository.findOne(id, {
+            relations: ['flavors'],
+        });
 
         if (!coffee) {
             throw new NotFoundException(`Coffee #${id} not found`); 
@@ -33,15 +37,15 @@ export class CoffeesService {
     }
 //seguir el avance a partir del minuto 2:55 del video 25
 
-    async update(id: string, updateCoffeeDto: any){
-        const Coffee = await this.coffeeRepository.preload({
+    async update(id: string, updateCoffeeDto: UpdateCoffeeDto){
+        const coffee = await this.coffeeRepository.preload({
             id:+id,
             ...updateCoffeeDto,
         });
-        if (!Coffee){
+        if (!coffee){
             throw new NotFoundException(`Coffee #${id} not found`);
         }
-        return this.coffeeRepository.save(Coffee);
+        return this.coffeeRepository.save(coffee);
     }
 
     async remove(id: string) {
@@ -50,3 +54,4 @@ export class CoffeesService {
     }
     
 } 
+//ver video a 28 min 1:35 para continual

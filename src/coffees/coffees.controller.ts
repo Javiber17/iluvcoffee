@@ -22,17 +22,15 @@ export class CoffeesController {
   }
 
     @Get(':id')
-     findOne(@Param('id') id: number)
-     
-     //findOne(@Param('id') id: string): string
-     {
-      console.log(typeof id === 'string');
-      return this.coffeesService.findOne('' + id );
+     findOne(@Param('id') id: string) {
+      console.log(typeof id);
+      return this.coffeesService.findOne('' + id);
       //const coffee = await this.coffeesService.findOne(req.params.id);
     }
 
      @Post()
     create(@Body() createCoffeeDto: CreateCoffeeDto) {
+
       console.log(createCoffeeDto instanceof CreateCoffeeDto);
       return this.coffeesService.create(createCoffeeDto);
     }
