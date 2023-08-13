@@ -4,7 +4,7 @@ import { Flavor } from "./flavor.entity"
 
 @Entity()
 export class Coffee {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("increment")
     id: number;
 
     @Column()
@@ -15,8 +15,8 @@ export class Coffee {
 
     @JoinTable()
     @ManyToMany(
-        Type => Flavor,
-        flavor =>flavor.coffees,
+        (Type) => Flavor,
+        (flavor) =>flavor.coffees,
         {
             cascade: true,
         }
