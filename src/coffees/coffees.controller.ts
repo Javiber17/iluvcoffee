@@ -26,7 +26,6 @@ export class CoffeesController {
      findOne(@Param('id') id: string) {
       console.log(typeof id);
       return this.coffeesService.findOne(id);
-      //const coffee = await this.coffeesService.findOne(req.params.id);
     }
 
      @Post()
